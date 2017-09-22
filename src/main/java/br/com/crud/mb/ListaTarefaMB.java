@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.crud.model.Tarefa;
 import br.com.crud.service.TarefaService;
 import br.com.crud.util.FacesUtil;
-import br.com.crud.dao.*;
 
+@Named
+@ViewScoped
 public class ListaTarefaMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,7 @@ public class ListaTarefaMB implements Serializable{
 	private List<Tarefa> TarefaSelecionadas = new ArrayList<>();
 	
 	@PostConstruct
-	public void inicialziar() {
+	public void inicializar() {
 		tarefas = tarefaservice.listaAll();
 	}
 	

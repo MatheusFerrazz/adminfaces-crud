@@ -2,11 +2,15 @@ package br.com.crud.mb;
 
 import java.io.Serializable;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.crud.model.Tarefa;
 import br.com.crud.service.TarefaService;
 
+@Named
+@ViewScoped
 public class CadastroTarefaMB implements Serializable{
 
 

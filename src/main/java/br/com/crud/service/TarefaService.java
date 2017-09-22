@@ -20,7 +20,7 @@ public class TarefaService implements Serializable {
 	@Transacional
 	public void salvar(Tarefa tarefa) {
 		if (tarefa.isInclusao()) {
-			tarefa.setCriação(new Date());
+			tarefa.setCriacao(new Date());
 		}
 		if (tarefa.isEdicao()) {
 			tarefa.setEdicao(new Date());

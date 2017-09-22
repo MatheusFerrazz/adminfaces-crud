@@ -14,30 +14,33 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Tarefa implements Serializable {
+public class Tarefa implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+	
 	@NotEmpty
 	private String titulo;
+	
 	@NotEmpty
 	private String descricao;
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Status status;
-
-	private Date criação;
-
+	
+	private Date criacao;
+	
 	private Date edicao;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,12 +68,12 @@ public class Tarefa implements Serializable {
 		this.status = status;
 	}
 
-	public Date getCriação() {
-		return criação;
+	public Date getCriacao() {
+		return criacao;
 	}
 
-	public void setCriação(Date criação) {
-		this.criação = criação;
+	public void setCriacao(Date criacao) {
+		this.criacao = criacao;
 	}
 
 	public Date getEdicao() {
@@ -80,19 +83,11 @@ public class Tarefa implements Serializable {
 	public void setEdicao(Date edicao) {
 		this.edicao = edicao;
 	}
-
-	// Esse trecho esta diferente - buscar solução de depois
+	
 	public boolean isInclusao() {
-		// return getId() == null ? true : false;
-		if (getId() == ' ') {
-			return true;
-
-		} else {
-			return false;
-		}
-
+		return getId() == null ? true : false;
 	}
-
+	
 	public boolean isEdicao() {
 		return !isInclusao();
 	}
@@ -101,7 +96,7 @@ public class Tarefa implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -114,8 +109,12 @@ public class Tarefa implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Tarefa other = (Tarefa) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+
 }
